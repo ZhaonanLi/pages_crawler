@@ -1,5 +1,6 @@
 import MySQLdb as MySQL
 import datetime
+from ..conf.configure import Configure
 
 
 class DomainNames(object):
@@ -133,15 +134,12 @@ class DomainNames(object):
 
 
 if __name__ == '__main__':
-    print 'Program is working'
-
-    db_hostname = '127.0.0.1'
-    db_portnumber = 8889
-    db_name = 'BerryBoxDB'
-    db_username = 'root'
-    db_password = 'root'
+    db_hostname = Configure.databases['main_database']['host_name']
+    db_portnumber = Configure.databases['main_database']['port_number']
+    db_name = Configure.databases['main_database']['db_name']
+    db_username = Configure.databases['main_database']['username']
+    db_password = Configure.databases['main_database']['password']
     domain_names_model = DomainNames(db_hostname, db_portnumber, db_name,
                                      db_username, db_password)
-    domain_names_model.insert_domain_names()
 
-    print 'Program is end'
+    domain_names_model.insert_domain_names()
