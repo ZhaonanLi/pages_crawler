@@ -1,5 +1,5 @@
 import MySQLdb as MySQL
-import datetime
+from ..lib.time import Time
 from ..conf.configure import Configure
 
 
@@ -34,7 +34,7 @@ class DomainNames(object):
     def insert_domain_names(self):
         table_name = 'DomainNames'
         sql_str = 'INSERT INTO {} (domain_name, created, updated) VALUES("{}", "{}", "{}")'
-        utc_timestamp = datetime.datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S')
+        utc_timestamp = Time.get_current_utc_datetime()
         domain_names = [
             'nbcnews.com',
             'msn.com',
